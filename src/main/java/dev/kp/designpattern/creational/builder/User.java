@@ -1,3 +1,7 @@
+package dev.kp.designpattern.creational.builder;
+
+import java.util.Objects;
+
 public class User {
     // Required parameters
     private final String firstName;
@@ -73,5 +77,25 @@ public class User {
                 ", address='" + address + '\'' +
                 ", isSubscribed=" + isSubscribed +
                 '}';
+    }
+
+   /* public boolean equals(Object obj) {
+        return (this == obj);
+    }*/
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof User u)) return false;
+        return age == u.age
+                && isSubscribed == u.isSubscribed
+                && Objects.equals(firstName, u.firstName)
+                && Objects.equals(lastName, u.lastName)
+                && Objects.equals(email, u.email)
+                && Objects.equals(address, u.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, age, email, address, isSubscribed);
     }
 }
